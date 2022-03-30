@@ -78,7 +78,7 @@ function BinaryTree(){
                 else
                     return this.insertHelper(data, node.right);
             }
-            if(cmp <= 0){
+            if(cmp < 0){
                 if(!node.left){
                     newNode = new Node(data);
                     node.left = newNode;
@@ -195,12 +195,11 @@ function BinaryTree(){
  * @throws none
  **/
 BinaryTree.prototype.insert = function(data){
-    if(!this.root){
-       return this.root = new Node(data);
+    if(this.root){
+		console.log("added " + data);
+		return this.insertHelper(data, this.root);
     }
-    console.log("added " + data);
-    return this.insertHelper(data, this.root);
-
+    return this.root = new Node(data);
 };
 
 /** 
@@ -273,7 +272,6 @@ BinaryTree.prototype.getMax = function(){
  **/
 BinaryTree.prototype.preOrderTraversal = function(node){
     if(node !== null){
-        console.log(node.data);
         this.preOrderTraversal(node.left);
         this.preOrderTraversal(node.right);
     }
@@ -322,7 +320,7 @@ BinaryTree.prototype.inOrderTraversal = function(node){
  * @return none
  * @throws none
  **/
-BinaryTree.prototype.depthFirstSearch = function(node){
+BinaryTree.prototype.dfs = function(node){
 		if(node == null)
             return;
 
@@ -347,7 +345,7 @@ BinaryTree.prototype.depthFirstSearch = function(node){
  * @return none
  * @throws none
  **/
-BinaryTree.prototype.breadthFirstSearch = function(node){
+BinaryTree.prototype.bfs = function(node){
     if(node == null)
         return;
 

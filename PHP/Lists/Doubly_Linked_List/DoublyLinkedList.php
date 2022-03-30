@@ -70,7 +70,7 @@ class DoublyLinkedList{
             $this->head = &$node;
             $this->tail = $this->head;
             $this->count++;
-            return $node;
+            return $this->head;
         }
 
         // Add to the end of the list
@@ -159,13 +159,13 @@ class DoublyLinkedList{
     public function IndexAt($index)
     {
         //Index was negative or larger then the amount of Nodes in the list
-        if ($index < 0 || $index > $this->Size())
+        if ($index < 0 || $index > $this->Length())
             return null;
 
         $tmp = &$this->head;
 
         // Move to index
-        for ($i = 0; $i < $index; $i++)
+        for ($i = 0; $i <= $index; $i++)
         {
             $tmp = $tmp->next;
         }
@@ -177,7 +177,7 @@ class DoublyLinkedList{
      * Gets the current count of the array
      * @return Number of items in the array
      */
-    public function Size()
+    public function Length()
     {
         return $this->count;
     }
@@ -187,7 +187,6 @@ class DoublyLinkedList{
      */
     public function printList()
     {
-        $items = [];
         $current = &$this->head;
         while($current != null) 
         {

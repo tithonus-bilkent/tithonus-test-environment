@@ -9,7 +9,7 @@
 class CircularArray:
     def __init__(self):
         self._array = []
-        self._size = 10
+        self._size = 50
         self._zeroIndex = 0
         self._count = 0
 
@@ -25,13 +25,13 @@ class CircularArray:
     ' @return mixed
     """
     def add(self, data):
-        tmp = (self._zeroIndex + self._count) % self._size
-        self._array[tmp] = data
+        temp = (self._zeroIndex + self._count) % self._size
+        self._array[temp] = data
         if ((self._count + 1) / self._size) >= 1:
             self.resize()
 
         self._count += 1
-        return self._array[tmp]
+        return self._array[temp]
 
     """
     ' Gets the data at passed in index
@@ -50,22 +50,22 @@ class CircularArray:
     ' @return mixed|null: data removed from the array or null
     """
     def remove(self, i):
-        tmp = self._array[i + self._zeroIndex % self._size]
+        temp = self._array[i + self._zeroIndex % self._size]
         self._array[i + self._zeroIndex % self._size] = self._array[self._zeroIndex]
         self._array[self._zeroIndex] = None
         self._count -=1
         self._zeroIndex = (self._zeroIndex + 1) % self._size
-        return tmp
+        return temp
 
     """
     ' Prints the array
     """
     def printArr(self):
-        tmp = ""
+        temp = ""
         i = 0
         while i < self._size:
-            tmp += self._array[(self._zeroIndex + i) % self._size] + "->"
+            temp += self._array[(self._zeroIndex + i) % self._size] + "->"
             i += 1
 
-        print(tmp)
+        print(temp)
 
