@@ -1,14 +1,15 @@
+import LinkedList from './linkedList';
+
 class Queue {
     constructor() {
-        this.elements = [];
-        this.start = 0;
+        this.linkedList = new LinkedList();
     }
 
     /**
      * @return {boolean}
      */
     isEmpty() {
-        return this.start === this.elements.length;
+        return !this.linkedList.head;
     }
 
     /**
@@ -20,7 +21,7 @@ class Queue {
             return null;
         }
 
-        return this.elements[this.start];
+        return this.linkedList.head.value;
     }
 
     /**
@@ -28,7 +29,7 @@ class Queue {
      * @param {*} value
      */
     enqueue(value) {
-        this.elements.push(value);
+        this.linkedList.append(value);
     }
 
     /**
@@ -37,10 +38,7 @@ class Queue {
      * @return {*}
      */
     dequeue() {
-        if (this.isEmpty()) {
-            return null;
-        }
-        this.start++;
-        return this.elements[this.start - 1];
+        const removedHead = this.linkedList.deleteHead();
+        return removedHead ? removedHead.value : null;
     }
 }
