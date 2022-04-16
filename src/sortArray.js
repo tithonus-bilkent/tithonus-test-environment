@@ -1,23 +1,32 @@
 /**
- * Insertion sort implementation
+ * Quick sort implementation
  *
  * @param {number[]} originalArray
  */
 function sortArray(originalArray) {
     const array = [...originalArray];
+    if (array.length <= 1) {
+        return array;
+    }
 
-    for (let i = 1; i < array.length; i += 1) {
-        let currentIndex = i;
+    const pivotElement = array.shift();
+    const centerArray = [pivotElement];
 
-        while (array[currentIndex - 1] !== undefined && array[currentIndex] < array[currentIndex - 1]) {
-            const temp = array[currentIndex];
-            array[currentIndex] = array[currentIndex - 1];
-            array[currentIndex - 1] = temp;
+    const leftArray = [];
+    const rightArray = [];
+    while (array.length) {
+        const currentElement = array.shift();
 
-            currentIndex -= 1;
+        if (currentElement === pivotElement) {
+            centerArray.push(currentElement);
+        } else if (currentElement < pivotElement) {
+            leftArray.push(currentElement);
+        } else {
+            rightArray.push(currentElement);
         }
     }
 
-    return array;
+    const leftArraySorted = sortArray(leftArray);
+    const rightArraySorted = sortArray(rightArray);
+    return leftArraySorted.concat(centerArray, rightArraySorted);
 }
-
