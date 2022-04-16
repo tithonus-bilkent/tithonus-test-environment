@@ -1,8 +1,8 @@
 /**
  * Linear search implementation.
  *
- * @param {*[]} sortedArray
- * @param {*} seekElement
+ * @param {number[]} sortedArray
+ * @param {number} seekElement
  * @return {number}
  */
 function searchElement(sortedArray, seekElement) {
