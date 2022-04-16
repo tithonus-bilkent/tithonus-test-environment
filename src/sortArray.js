@@ -1,23 +1,48 @@
 /**
- * Insertion sort implementation
+ * Merge sort implementation
  *
  * @param {number[]} originalArray
  */
 function sortArray(originalArray) {
-    const array = [...originalArray];
-
-    for (let i = 1; i < array.length; i += 1) {
-        let currentIndex = i;
-
-        while (array[currentIndex - 1] !== undefined && array[currentIndex] < array[currentIndex - 1]) {
-            const temp = array[currentIndex];
-            array[currentIndex] = array[currentIndex - 1];
-            array[currentIndex - 1] = temp;
-
-            currentIndex -= 1;
-        }
+    if (originalArray.length <= 1) {
+        return originalArray;
     }
 
-    return array;
+    const middleIndex = Math.floor(originalArray.length / 2);
+    const leftArray = originalArray.slice(0, middleIndex);
+    const rightArray = originalArray.slice(middleIndex, originalArray.length);
+
+    const leftArraySorted = sortArray(leftArray);
+    const rightArraySorted = sortArray(rightArray);
+    return mergeSortedArrays(leftArraySorted, rightArraySorted);
 }
 
+/**
+ * Merge two sorted arrays.
+ *
+ * @param {number[]} leftArray
+ * @param {number[]} rightArray
+ */
+function mergeSortedArrays(leftArray, rightArray) {
+    const sortedArray = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (sortedArray.length < leftArray.length + rightArray.length) {
+        let minElement = null;
+
+        if (leftArray[leftIndex] <= rightArray[rightIndex]) {
+            minElement = leftArray[leftIndex];
+            leftIndex += 1;
+        } else {
+            minElement = rightArray[rightIndex];
+            rightIndex += 1;
+        }
+
+        sortedArray.push(minElement);
+    }
+
+    return sortedArray
+        .concat(leftArray.slice(leftIndex))
+        .concat(rightArray.slice(rightIndex));
+}
