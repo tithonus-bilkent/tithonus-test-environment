@@ -42,28 +42,6 @@ export default class LinkedList {
     }
 
     /**
-     * @param {*} value
-     * @return {LinkedListNode}
-     */
-    find(value) {
-        if (!this.head) {
-            return null;
-        }
-
-        let currentNode = this.head;
-
-        while (currentNode) {
-            if (value !== undefined && currentNode.value === value) {
-                return currentNode;
-            }
-
-            currentNode = currentNode.next;
-        }
-
-        return null;
-    }
-
-    /**
      * @return {LinkedListNode}
      */
     deleteHead() {
@@ -116,7 +94,7 @@ export default class LinkedList {
     }
 }
 
-class LinkedListNode {
+export class LinkedListNode {
     constructor(value, next = null) {
         this.value = value;
         this.next = next;
