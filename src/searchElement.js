@@ -3,16 +3,15 @@
  *
  * @param {*[]} sortedArray
  * @param {*} seekElement
- * @return {number[]}
+ * @return {number}
  */
 function searchElement(sortedArray, seekElement) {
-    const foundIndices = [];
-
-    sortedArray.forEach((element, index) => {
+    for (let index = 0; index < sortedArray.length; index++){
+        const element = sortedArray[index];
         if (element === seekElement) {
-            foundIndices.push(index);
+            return index;
         }
-    });
+    }
 
-    return foundIndices;
+    return -1;
 }
