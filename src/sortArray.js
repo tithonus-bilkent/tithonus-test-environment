@@ -28,7 +28,7 @@ function mergeSortedArrays(leftArray, rightArray) {
     let leftIndex = 0;
     let rightIndex = 0;
 
-    while (sortedArray.length < leftArray.length + rightArray.length) {
+   while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
         let minElement = null;
 
         if (leftArray[leftIndex] <= rightArray[rightIndex]) {
