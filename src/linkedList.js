@@ -11,21 +11,6 @@ export default class LinkedList {
      * @param {*} value
      * @return {LinkedList}
      */
-    prepend(value) {
-        const newNode = new LinkedListNode(value, this.head);
-        this.head = newNode;
-
-        if (!this.tail) {
-            this.tail = newNode;
-        }
-
-        return this;
-    }
-
-    /**
-     * @param {*} value
-     * @return {LinkedList}
-     */
     append(value) {
         const newNode = new LinkedListNode(value);
 
@@ -60,47 +45,11 @@ export default class LinkedList {
 
         return deletedHead;
     }
-
-    /**
-     * @param {*[]} values
-     * @return {LinkedList}
-     */
-    fromArray(values) {
-        values.forEach((value) => this.append(value));
-        return this;
-    }
-
-    /**
-     * @return {LinkedListNode[]}
-     */
-    toArray() {
-        const nodes = [];
-
-        let currentNode = this.head;
-        while (currentNode) {
-            nodes.push(currentNode);
-            currentNode = currentNode.next;
-        }
-
-        return nodes;
-    }
-
-    /**
-     * @param {function} [callback]
-     * @return {string}
-     */
-    toString(callback) {
-        return this.toArray().map((node) => node.toString(callback)).toString();
-    }
 }
 
 export class LinkedListNode {
     constructor(value, next = null) {
         this.value = value;
         this.next = next;
-    }
-
-    toString(callback) {
-        return callback ? callback(this.value) : `${this.value}`;
     }
 }
